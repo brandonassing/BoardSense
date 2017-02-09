@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html>
+
+<head>
+    <title>BoardSense</title>
+
+    <link rel="icon" href="mountain-icon.png">
+
+    <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+
+    <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+
+
+    <script type="text/javascript" src="main.js"></script>
+    <link rel="stylesheet" href="main.css">
+
+</head>
+
+<body>
+    <div id="landing">
+        <div class="container section row">
+            <img id="icon" class="col s3" src="mountain-icon.png">
+            <h1 class="col s9">BoardSense</h1>
+        </div>
+    </div>
+    <div class="blue-grey lighten-5">
+        <div class=" blue-grey darken-3">
+            <ul class="container tabs  blue-grey darken-3">
+
+                <!-- prevent scroll -->
+
+                <li class="tab"><a data-target="riders" href="#riders">Riders</a></li>
+                <li class="tab"><a data-target="competitions" href="#competitions">Competitions</a></li>
+            </ul>
+        </div>
+
+        <!-- RIDER -->
+        <div id="riders" class="container section">
+            <h1>
+                Riders
+            </h1>
+            <form>
+                <div class="input-field">
+                    <input id="search-rider" type="text" required>
+                    <label for="search-rider">Enter rider name:</label>
+                </div>
+
+            </form>
+
+            <a id="search-rider-btn" class="waves-effect waves-light btn">Search</a>
+            <a id="id-btn" class="waves-effect waves-light btn">Rider ID</a>
+
+            <!-- Modal Trigger -->
+            <a id="rider-modal-trigger" class="waves-effect waves-light btn" href="#modal-new-rider" data-target="modal-new-rider">Create Rider</a>
+
+            <!-- Modal Structure -->
+            <div id="modal-new-rider" class="modal">
+                <div class="modal-content">
+                    <h4>Create rider</h4>
+                    <form action="/insertsnow" method="post">
+                        <div class="input-field">
+                            <input id="name-rider" type="text" name="name">
+                            <label for="name-rider">Enter rider name:</label>
+                        </div>
+
+                        <p class="range-field">
+                            <label for="height">Height (cm)</label>
+                            <input type="range" id="height" min="140" max="220" name="height" />
+                        </p>
+                        <label for="riding-style">Riding Style</label>
+                        <div id="riding-style">
+                            <p>
+                                <input name="ridingStyle" type="radio" id="regular" value="Regular" checked />
+                                <label for="regular">Regular</label>
+                            </p>
+                            <p>
+                                <input name="ridingStyle" type="radio" id="goofy" value="Goofy" />
+                                <label for="goofy">Goofy</label>
+                            </p>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="submit" value="Create" class="modal-action modal-close waves-effect waves-green btn-flat"></input>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <!-- Modal Trigger -->
+            <a id="rider-modal-trigger" class="waves-effect waves-light btn" href="#modal-register-rider" data-target="modal-register-rider">Register Rider</a>
+
+            <!-- Modal Structure -->
+            <div id="modal-register-rider" class="modal">
+                <div class="modal-content">
+                    <h4>Register rider</h4>
+                    <form action="/registercomp" method="post">
+
+                        <div class="input-field">
+                            <input id="id-rider" type="text" name="snowboarderID">
+                            <label for="id-rider">Enter rider ID:</label>
+                        </div>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="name-comp-reg" class="comp-input autocomplete" type="text" name="competitionName">
+                                        <label for="name-comp-reg">Enter competition name:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <p class="range-field">
+                            <label for="reg-comp-year">Competition Year</label>
+                            <input type="range" id="reg-comp-year" min="1970" max="2017" name="competitionYear" />
+                        </p>
+
+                        <div class="input-field">
+                            <input id="brand-reg" type="text" name="brand">
+                            <label for="brand-reg">Enter board brand:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="model-reg" type="text" name="model">
+                            <label for="model-reg">Enter board model:</label>
+                        </div>
+                        <p class="range-field">
+                            <label for="board-year-reg">Year Made</label>
+                            <input type="range" id="board-year-reg" min="1970" max="2017" name="yearMade" />
+                        </p>
+                        <div id="comp-type-radio">
+                            <label for="comp-type-radio">Category</label>
+                            <p>
+                                <input name="categoryName" type="radio" id="bigair" checked value="Big Air" />
+                                <label for="bigair">Big Air</label>
+                            </p>
+                            <p>
+                                <input name="categoryName" type="radio" id="slopestyle" value="Slopestyle" />
+                                <label for="slopestyle">Slopestyle</label>
+                            </p>
+                            <p>
+                                <input name="categoryName" type="radio" id="race" value="Race" />
+                                <label for="race">Race</label>
+                            </p>
+                            <p>
+                                <input name="categoryName" type="radio" id="halfpipe" value="Half-Pipe" />
+                                <label for="halfpipe">Half-Pipe</label>
+                            </p>
+                        </div>
+
+                        <div class="input-field">
+                            <input id="result-reg" type="text" name="result">
+                            <label for="result-reg">Enter competition result:</label>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="submit" value="Register" class="modal-action modal-close waves-effect waves-green btn-flat"></input>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="section">
+                <table class="bordered">
+                    <thead>
+                        <tr>
+                            <th>Competition</th>
+                            <th>Year</th>
+                            <th>Category</th>
+                            <th>Result</th>
+                            <th>Board Brand</th>
+                            <th>Board Model</th>
+                            <th>Board Year Made</th>
+                        </tr>
+                    </thead>
+
+                    <tbody id="rider-search-table">
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        <!-- RIDER -->
+
+
+
+        <!-- COMPETITION -->
+        <div id="competitions" class="container section">
+            <h1>
+                Competition
+            </h1>
+            <form>
+                <div class="input-field">
+                    <input id="search-comp" type="search" required>
+                    <label for="search-comp">Enter competition name:</label>
+                </div>
+                <p class="range-field">
+                    <label for="comp-search-year">Competition Year</label>
+                    <input type="range" id="comp-search-year" min="1970" max="2017" />
+                </p>
+            </form>
+
+            <a id="show-participants" class="waves-effect waves-light btn">Search</a>
+
+            <a id="num-participants" class="waves-effect waves-light btn">Show participant count</a>
+
+
+            <!-- CREATE COMPETITION -->
+
+            <!-- Modal Trigger -->
+            <a id="comp-modal-trigger" class="waves-effect waves-light btn" href="#modal-new-comp" data-target="modal-new-comp">Create Competition</a>
+
+            <!-- Modal Structure -->
+            <div id="modal-new-comp" class="modal">
+                <div class="modal-content">
+                    <h4>Create competition</h4>
+                    <form action="/newcomp" method="post">
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="name-comp" type="text" class="comp-input autocomplete" name="newcomp">
+                                        <label for="name-comp">Enter competition name:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div id="tier">
+                            <label for="tier">Tier</label>
+                            <p>
+                                <input name="tier" type="radio" id="pro" checked value="Pro" />
+                                <label for="pro">Professional</label>
+                            </p>
+                            <p>
+                                <input name="tier" type="radio" id="amateur" value="Amateur" />
+                                <label for="amateur">Amateur</label>
+                            </p>
+                        </div>
+
+                        <p class="range-field">
+                            <label for="create-comp-year">Competition Year</label>
+                            <input type="range" id="create-comp-year" min="1970" max="2017" name="compYear" />
+                        </p>
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input type="text" id="mtn-input" class="mtn-input autocomplete" name="mountainName">
+                                        <label for="mtn-input">Mountain</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="modal-footer">
+                            <input type="submit" value="Create" class=" modal-action modal-close waves-effect waves-green btn-flat"></input>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <!-- UPDATE COMPETITION -->
+
+            <!-- Modal Trigger -->
+            <a id="comp-modal-trigger-update" class="waves-effect waves-light btn" href="#modal-update-comp" data-target="modal-update-comp">Update Competition</a>
+
+            <!-- Modal Structure -->
+            <div id="modal-update-comp" class="modal">
+                <div class="modal-content">
+                    <h4>Update competition</h4>
+                    <form action="/updpart" method="post">
+
+                        <div class="row">
+                            <div class="col s12">
+                                <div class="row">
+                                    <div class="input-field col s12">
+                                        <input id="name-comp-update" type="text" class="comp-input autocomplete" name="competitionName">
+                                        <label for="name-comp-update">Enter competition name:</label>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <p class="range-field">
+                            <label for="update-comp-year">Competition Year</label>
+                            <input type="range" id="update-comp-year" min="1970" max="2017" name="competitionYear" />
+                        </p>
+
+                        <div class="input-field">
+                            <input id="brand-comp-update" type="text" name="brand">
+                            <label for="brand-comp-update">Enter board brand:</label>
+                        </div>
+                        <div class="input-field">
+                            <input id="model-comp-update" type="text" name="model">
+                            <label for="model-comp-update">Enter board model:</label>
+                        </div>
+                        <p class="range-field">
+                            <label for="board-year">Year Made</label>
+                            <input type="range" id="board-year" min="1970" max="2017" name="yearMade" />
+                        </p>
+
+
+                        <div class="modal-footer">
+                            <input type="submit" value="Update" class=" modal-action modal-close waves-effect waves-green btn-flat"></input>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+
+            <div class="section">
+                <table class="bordered">
+                    <thead>
+                        <tr>
+                            <th>Participant ID</th>
+                            <th>Participants</th>
+                            <th>Results</th>
+                            <th>Category</th>
+                            <th>Board Brand</th>
+                            <th>Board Model</th>
+                            <th>Board Year Made</th>
+
+                        </tr>
+                    </thead>
+
+                    <tbody id="show-participants-table">
+
+                    </tbody>
+                </table>
+
+
+            </div>
+        </div>
+        <!-- COMPETITION -->
+
+
+
+    </div>
+    <footer>
+        <div class="center-align  blue-grey darken-3 section">
+            <h5 style="color:white">Created by Samuel Yun and Brandon Assing</h5>
+
+            <a id="quit-btn" class="waves-effect waves-light btn" href="quit.html">End Connection</a>
+        </div>
+    </footer>
+</body>
+
+</html>

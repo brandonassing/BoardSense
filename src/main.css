@@ -1,0 +1,14 @@
+#landing {
+    height: 100vh;
+    background-image: url("background.jpg");
+}
+
+input[type="date"]:before {
+    content: attr(placeholder) !important;
+    color: #aaa;
+    margin-right: 0.5em;
+}
+
+#icon {
+    width: 150px;
+}
